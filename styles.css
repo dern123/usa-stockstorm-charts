@@ -162,8 +162,6 @@
     border: 1px solid #FFFFFF80;
 }
 
-
-
 .form-wrapper {
   background-color: #14141C;
   padding: 10px;
@@ -171,19 +169,43 @@
   color: white;
   font-family: sans-serif;
 }
-
+.form-wrapper h3{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
 .form-item {
   display: flex;
-  margin-bottom: 14px;
+  margin-bottom: 24px;
 }
+#username {
+    flex-grow: 1;
+    width: 100%;
+    line-height: 24px;
+    background-color: transparent;
+    margin-left: 10px;
+    color: #fff;
+    border: none;
+    border-bottom: 2px solid #3d3d3f;
 
+}
 .form-item-radio{
     display: flex;
+    align-items: center;
+}
+.form-item-radio input { 
+    width: 14px;
+    height: 14px;
+    margin-left: 10px;
 }
 .form-item label {
   display: flex;
   align-items: center;
   gap: 6px;
+  padding-left: 10px;
+}
+.form-item label:first-child {
+  padding-left: 0px;
 }
 .submit-button{
     background-color: #3636E3;
@@ -194,27 +216,36 @@
     cursor: pointer;
     margin-bottom: 10px;
 }
-/* Приховуємо стандартні радіокнопки */
-.form-item input[type="radio"] {
-    width: 10px;
-    height: 10px;
-    padding: 10px;
+.form-item input { 
+    padding-right: 10px;
 }
 .form-item input[type="radio"]:checked {
     background-color: #3636E3;
 }
-.form-item input[type="checkbox"]:checked {
-    background-color: #3636E3;
+ .form-item input[type="checkbox"]{
+  -webkit-appearance:none; appearance:none;
+  width:20px;height:20px;border:2px solid #3d3d3f;border-radius:4px;
+  position:relative;background:#fff;display:inline-block;
 }
-.form-item input[type="text"]:focus {
-    border: 1px solid #3636E3;
+.form-item input[type="checkbox"]:checked::after{
+  content:'\2714';
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-55%);
+  font-size:20px;
+  color:#3636E3;
+  display:block;
+}
+#username:focus {
+    border-bottom: 2px solid #3636E3;
 }
 .form-wrapper input,
 .form-wrapper select,
 .form-wrapper textarea,
 .form-wrapper label,
 .form-wrapper button {
-  pointer-events: auto;   /* важливо для клік-таргетів усередині embed */
+  pointer-events: auto;
   user-select: text;
 }
 
