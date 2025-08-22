@@ -360,6 +360,31 @@
 
   // 5) На деяких збірках клік не ставить фокус — форсимо
   username.addEventListener('mousedown', () => setTimeout(() => username.focus(), 0), true);
+
+  const isUsernameRelated = (el) =>
+  el === username ||
+  (el instanceof Element && el.closest('label[for="username"]'));
+
+  document.addEventListener('pointerdown', (e) => {
+  if (!isUsernameRelated(e.target)) {
+    // якщо були в режимі введення — знімаємо фокус
+    if (typing) {
+      typing = false;
+      username.blur?.();
+    }
+    // повертаємо керування камерою
+    toggleControls(true);
+  }
+}, true);
+
+// (опційно) Escape також виходить з режиму введення
+window.addEventListener('keydown', (e) => {
+  if (typing && e.key === 'Escape') {
+    typing = false;
+    username.blur?.();
+    toggleControls(true);
+  }
+}, true);
 })();
 </script>
 
