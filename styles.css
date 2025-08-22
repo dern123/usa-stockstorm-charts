@@ -1,0 +1,224 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Inter', sans-serif;
+}
+.left-container {
+    background-color: #14141C;
+    width: 304px;
+    border-radius: 16px;
+    padding: 16px 14px;
+}
+.left-container .menu {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-bottom: 16px;
+}
+.left-container .menu .item {
+    height: 32px;
+    padding: 7px 23px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 14px;
+}
+.left-container .menu .item:hover {
+    background-color: #3636E311;
+    cursor: pointer;
+}
+.left-container .menu .item.active {
+    background-color: #3636E3;
+}
+
+
+
+.left-container  .header-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 16px;
+}
+
+.left-container  .select-wrapper {
+    width: 116px;
+    height: 40px;
+    background: #FFFFFF26;
+    border-radius: 8px;
+    position: relative;
+    z-index: 999;
+}
+.left-container  .select-wrapper input {
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    color: #FFFFFF;
+    padding: 0 16px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+}
+.left-container  .select-wrapper img {
+    position: absolute;
+    right: 14px;
+    top: 12px;
+}
+.left-container .settings-wrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    background: #FFFFFF26;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.left-container .settings-wrapper img {
+    width: 16px;
+    height: 16px;
+}
+
+.left-container .chart {
+    width: 100%;
+    z-index: 1;
+    position: relative;
+}
+
+
+
+.left-container .chart-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+.left-container .chart-wrapper p {
+    color: #FFFFFF;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 500;
+}
+.left-container .chart-wrapper b {
+    font-weight: 600;
+}
+
+
+
+
+.left-container .time-rage-wrapper {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+.left-container .time-rage-wrapper .item {
+    width: 60px;
+    height: 28px;
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: 500;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.left-container .time-rage-wrapper .item.active {
+    background-color: #FFFFFF26;
+}
+
+
+.left-container .main-buttons {
+    display: flex;
+    justify-content: space-between;
+    height: 40px;
+    width: 100%;
+}
+.left-container .main-buttons button {
+    border: none;
+    outline: none;
+    width: 130px;
+    height: 40px;
+    border-radius: 8px;
+    color: #fff;
+}
+.left-container .main-buttons button.add-to-watchlist {
+    background: #3636E3;
+}
+.left-container .main-buttons button.compare {
+    background: #FFFFFF0D;
+}
+
+
+
+.left-bottom-container {
+    width: 304px;
+    height: 80px;
+    border-radius: 16px;
+    border: 1px solid #FFFFFF80;
+}
+
+
+
+.form-wrapper {
+  background-color: #14141C;
+  padding: 10px;
+  border-radius: 8px;
+  color: white;
+  font-family: sans-serif;
+}
+
+.form-item {
+  display: flex;
+  margin-bottom: 14px;
+}
+
+.form-item-radio{
+    display: flex;
+}
+.form-item label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.submit-button{
+    background-color: #3636E3;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+/* Приховуємо стандартні радіокнопки */
+.form-item input[type="radio"] {
+    width: 10px;
+    height: 10px;
+    padding: 10px;
+}
+.form-item input[type="radio"]:checked {
+    background-color: #3636E3;
+}
+.form-item input[type="checkbox"]:checked {
+    background-color: #3636E3;
+}
+.form-item input[type="text"]:focus {
+    border: 1px solid #3636E3;
+}
+.form-wrapper input,
+.form-wrapper select,
+.form-wrapper textarea,
+.form-wrapper label,
+.form-wrapper button {
+  pointer-events: auto;   /* важливо для клік-таргетів усередині embed */
+  user-select: text;
+}
+
+.form-wrapper {
+  /* якщо є overlay всередині — гарантуємо прийом подій */
+  pointer-events: auto;
+}

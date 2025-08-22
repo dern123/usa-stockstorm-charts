@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://unpkg.com/aframe-htmlembed-component@^1.0.0/dist/aframe-htmlembed-component.min.js"></script>
+
+    <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="./build.js"></script>
+
+    <link rel="stylesheet" href="./styles.css">
+
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+<a-scene
+    keyboard-shortcuts="enterVR: false; resetPose: false"
+    fog="type: linear; color: #222222; far: 20;"
+    renderer="antialias: true;colorManagement: false"
+>
+    <a-assets>
+        <img id="floor" src="assets/floor.png">
+        <img id="tex1" src="assets/box.png">
+    </a-assets>
+    <a-plane material="src:#floor; repeat: 700 700; transparent: true;" height="500" width="500" rotation="-90 0 0"></a-plane>
+    <a-sky color="#222222"></a-sky>
+    <a-entity id="cameraRig"  position="0 0.5 0">
+        <!-- <a-camera id="camera" > -->
+            <a-camera id="camera"></a-camera>
+        <!-- </a-camera> -->
+        <a-entity id="mouseCursor" cursor="rayOrigin: mouse" raycaster="objects: .screen"></a-entity>
+        <a-entity laser-controls raycaster="objects: .screen;"></a-entity>
+    </a-entity>
+
+
+    <a-entity id="left-container" class="screen left-container" htmlembed="1024" position="-0 2.3 -2" rotation="0 0 0">
+        <div class="menu">
+            <div class="item active">Live Chart</div>
+            <div class="item">Perfomance</div>
+            <div class="item">Profile</div>
+            <div class="item">Financials</div>
+        </div>
+        <div class="header-row">
+            <div class="select-wrapper">
+                <input type="text" value="S&P 500" readonly>
+                <img src="./assets/arrow-down.svg" alt="">
+            </div>
+            <div class="settings-wrapper">
+                <img src="./assets/settings.svg" alt="">
+            </div>
+        </div>
+
+        <div class="chart-wrapper">
+            <p><b>S&P 500</b> INDEXSP: .INX</p>
+            <p><b>$ 6329,94</b> +91,93 (1,47%) Today</p>
+            <p>As of 12:25 PM PDT</p>
+            <svg id="chart" width="276" height="148"></svg>
+
+            <!--            <img src="./assets/chart.svg" alt="" class="chart">-->
+        </div>
+        <div class="time-rage-wrapper">
+            <div class="item" data-range="1D">1D</div>
+            <div class="item" data-range="1W">1W</div>
+            <div class="item" data-range="1M">1M</div>
+            <div class="item" data-range="6M">6M</div>
+            <div class="item active" data-range="1Y">1Y</div>
+            <div class="item" data-range="5Y">5Y</div>
+            <div class="item" data-range="All">All</div>
+        </div>
+        <div class="main-buttons">
+            <button class="add-to-watchlist">Add to Watchlist</button>
+            <button class="compare">Compare</button>
+        </div>
+    </a-entity>
+    <!-- форма -->
+    <a-entity id="form-container"
+            class="screen form-container"
+            htmlembed="2048"
+            position="1.5 2.3 -2"
+            rotation="0 0 0">
+    <div class="form-wrapper">
+        <h3>Test Form Elements</h3>
+
+        <!-- Input field -->
+        <div class="form-item">
+        <label for="username">Username:</label>
+        <input type="text" id="username" placeholder="Enter your name">
+        </div>
+
+        <!-- Checkbox -->
+        <div class="form-item">
+            <input type="checkbox" id="subscribe">
+            <label for="subscribe">
+                Subscribe to newsletter
+            </label>
+        </div>
+
+        <!-- Radio buttons -->
+        <div class="form-item">
+        <p>Choose a plan:</p>
+        <div class="form-item-radio">
+            <input type="radio" name="plan" value="basic" id="plan-basic">
+            <label for="plan-basic">  Basic
+            </label>
+        </div>
+        <div class="form-item-radio">
+            <input type="radio" name="plan" value="pro" id="plan-pro">
+            <label for="plan-pro"> Pro
+            </label>
+        </div>
+        </div>
+
+        <button id="submitBtn" class="submit-button">Submit</button>
+    </div>
+    </a-entity>
+
+    <a-entity id="left-bottom-container" class="screen left-bottom-container" htmlembed="1024" material="shader: flat" position="-0 1.05 -2" rotation="0 0 0">
+        <img src="./assets/ae-logo.png" alt="">
+    </a-entity>
+
+</a-scene>
+
+<script>
+    const menuButtons = document.querySelectorAll('.left-container .menu .item');
+    menuButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            menuButtons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+        });
+    });
+</script>
+
+<script>
+    const svg = d3.select("#chart");
+    const width = +svg.attr("width");
+    const height = +svg.attr("height");
+    const margin = { top: 10, right: 10, bottom: 20, left: 30 };
+
+    let xScale, yScale, lineGenerator;
+    let path, circles, xAxisG, yAxisG;
+
+    // Дані для різних діапазонів
+    const datasets = {
+        "1D": {
+            labels: ["09:00","12:00","15:00","18:00","21:00"],
+            data: [5, 8, 7, 9, 6]
+        },
+        "1W": {
+            labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+            data: [12, 15, 10, 18, 20, 16, 14]
+        },
+        "1M": {
+            labels: ["W1","W2","W3","W4"],
+            data: [10, 12, 18, 15]
+        },
+        "6M": {
+            labels: ["Jan","Feb","Mar","Apr","May","Jun"],
+            data: [12, 15, 22, 28, 30, 26]
+        },
+        "1Y": {
+            labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+            data: [5, 12, 18, 25, 30, 28, 35, 32, 26, 20, 15, 10]
+        },
+        "5Y": {
+            labels: ["2019","2020","2021","2022","2023"],
+            data: [100, 150, 200, 180, 220]
+        },
+        "All": {
+            labels: ["2010","2012","2014","2016","2018","2020","2022","2024"],
+            data: [50, 70, 100, 130, 160, 200, 220, 250]
+        }
+    };
+
+    // Функція побудови графіка
+    function drawChart(rangeKey) {
+        const dataset = datasets[rangeKey];
+        const data = dataset.labels.map((label, i) => ({ label, value: dataset.data[i] }));
+
+        // Масштаби
+        xScale = d3.scalePoint()
+            .domain(dataset.labels)
+            .range([margin.left, width - margin.right]);
+
+        const maxY = d3.max(dataset.data);
+        yScale = d3.scaleLinear()
+            .domain([0, Math.ceil(maxY / 10) * 10]) // округлення вгору
+            .range([height - margin.bottom, margin.top]);
+
+        lineGenerator = d3.line()
+            .x(d => xScale(d.label))
+            .y(d => yScale(d.value))
+            .curve(d3.curveMonotoneX);
+
+        // Осі
+        if (!xAxisG) {
+            xAxisG = svg.append("g").attr("transform", `translate(0,${height - margin.bottom})`);
+        }
+        xAxisG.call(d3.axisBottom(xScale))
+            .call(g => g.selectAll("path, line").attr("stroke", "#FFFFFFCC"))
+            .call(g => g.selectAll("text").attr("fill", "#FFFFFFCC"));
+
+        if (!yAxisG) {
+            yAxisG = svg.append("g").attr("transform", `translate(${margin.left},0)`);
+        }
+        yAxisG.call(d3.axisLeft(yScale).ticks(5))
+            .call(g => g.selectAll("path, line").attr("stroke", "#FFFFFFCC"))
+            .call(g => g.selectAll("text").attr("fill", "#FFFFFFCC"));
+
+        // Лінія
+        if (!path) {
+            path = svg.append("path")
+                .attr("fill", "none")
+                .attr("stroke", "#8979FF")
+                .attr("stroke-width", 2);
+        }
+
+        // Точки
+        if (!circles) {
+            circles = svg.selectAll("circle")
+                .data(data)
+                .enter()
+                .append("circle")
+                .attr("r", 3)
+                .attr("fill", "#8979FF");
+        } else {
+            circles.remove();
+            circles = svg.selectAll("circle")
+                .data(data)
+                .enter()
+                .append("circle")
+                .attr("r", 3)
+                .attr("fill", "#8979FF");
+        }
+
+        // --- Анімація ---
+        let progress = 0;
+        const speed = 0.005;
+
+        function animate() {
+            progress += speed;
+            if (progress > 1) progress = 1;
+
+            const indexProgress = progress * (data.length - 1);
+            const animatedData = data.map((d, i) => i <= indexProgress ? d : null).filter(d=>d);
+
+            path.datum(animatedData).attr("d", lineGenerator);
+
+            circles
+                .attr("cx", d => xScale(d.label))
+                .attr("cy", (d,i) => i <= indexProgress ? yScale(d.value) : 0)
+                .attr("opacity", (d,i) => i <= indexProgress ? 1 : 0);
+
+            if (progress < 1) requestAnimationFrame(animate);
+        }
+        animate();
+    }
+
+    // Початковий графік
+    drawChart("1Y");
+
+    // Обробник кнопок
+    document.querySelectorAll(".time-rage-wrapper .item").forEach(btn => {
+        btn.addEventListener("click", () => {
+            document.querySelectorAll(".item").forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            drawChart(btn.dataset.range);
+        });
+    });
+</script>
+
+<script>
+(function () {
+  const formEntity = document.getElementById('form-container');        // <a-entity ... htmlembed>
+  const camera     = document.getElementById('camera');
+  const username   = document.getElementById('username');
+  const subscribe  = document.getElementById('subscribe');
+  const submitBtn  = document.getElementById('submitBtn');
+  const radios     = Array.from(document.querySelectorAll('input[name="plan"]'));
+
+  //  примусовий ререндер
+  const force = () => {
+    try { formEntity.components?.htmlembed?.forceRender?.(); } catch(_) {}
+  };
+
+  // Блокуємо рух сцени під час набору
+  const toggleControls = (enable) => {
+    camera?.setAttribute('wasd-controls', 'enabled: ' + (enable ? 'true' : 'false'));
+  };
+
+  // 1) INPUT: відображення введеного тексту
+  //    - синхронізуємо property -> attribute
+  //    - змушуємо htmlembed перемалюватися
+  let typing = false;
+
+  const applyValue = () => {
+    username.setAttribute('value', username.value); // критично для htmlembed
+    force();
+  };
+
+  username.addEventListener('focus', () => { typing = true;  toggleControls(false); });
+  username.addEventListener('blur',  () => { typing = false; toggleControls(true);  });
+
+  // Якщо нативний input подія доходить — цього достатньо
+  username.addEventListener('input', () => {
+    applyValue();
+    console.log('input event, current value:', username.value); 
+  });
+
+  // На деяких збірках keydown до інпуту не доходить.
+  // Перехоплюємо на window (capture), самі оновлюємо value + attribute.
+  window.addEventListener('keydown', (e) => {
+    if (!typing) return;
+    e.stopPropagation();
+    e.preventDefault();
+
+    if (e.key === 'Enter') { submitBtn?.click(); return; }
+    if (e.key === 'Backspace') {
+      username.value = username.value.slice(0, -1);
+      applyValue();
+      return;
+    }
+    if (e.key === ' ') {
+      username.value += ' ';
+      applyValue();
+      return;
+    }
+    if (e.key.length === 1) {          // друкований символ
+      username.value += e.key;
+      applyValue();
+    }
+  }, true);
+
+  // 2) CHECKBOX: синхронізуємо checked -> attribute + ререндер
+  const syncCheckboxAttr = () => {
+    if (subscribe.checked) subscribe.setAttribute('checked', ''); 
+    else subscribe.removeAttribute('checked');
+    force();
+  };
+  subscribe.addEventListener('change', syncCheckboxAttr);
+  syncCheckboxAttr(); // початковий стан
+
+  // 3) RADIO: атрибут checked лише на вибраному
+  const syncRadiosAttr = () => {
+    radios.forEach(r => r.removeAttribute('checked'));
+    const current = radios.find(r => r.checked);
+    if (current) current.setAttribute('checked', '');
+    force();
+  };
+  radios.forEach(r => r.addEventListener('change', syncRadiosAttr));
+  syncRadiosAttr();
+
+  // 4) Submit для демо
+  submitBtn?.addEventListener('click', () => {
+    const plan = document.querySelector('input[name="plan"]:checked')?.value;
+    alert(`Name: ${username.value}, Subscribed: ${subscribe.checked}, Plan: ${plan || '-'}`);
+  });
+
+  // 5) На деяких збірках клік не ставить фокус — форсимо
+  username.addEventListener('mousedown', () => setTimeout(() => username.focus(), 0), true);
+})();
+</script>
+
+</body>
+</html>
