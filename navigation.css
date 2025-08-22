@@ -47,7 +47,7 @@
   display:flex; 
   align-items:center; 
   justify-content: space-between;
-  min-width: 524px;
+  min-width: 424px;
   max-width: 624px;
   gap:16px;
   flex:1 1 auto;
@@ -121,13 +121,13 @@
 }
 .ss-actions .ss-pill-long-btn{
   --collapsed: 40px;
-  --expanded: 200px;
+  --expanded: 260px;
 
   height:40px; 
   width:var(--collapsed);
   display:flex; 
   align-items:center; 
-  gap:10px;
+  gap:3px;
   padding:0 10px;
   border-radius:14px;
   background:#ffffff15; 
@@ -150,7 +150,6 @@
     width: 100%;
     line-height: 24px;
     background-color: transparent;
-    margin-left: 10px;
     color: #fff;
     border: none;
 }
