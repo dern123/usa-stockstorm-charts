@@ -12,6 +12,7 @@
     <script src="./build.js"></script>
 
     <link rel="stylesheet" href="./styles.css">
+    <link rel="stylesheet" href="./navigation.css">
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
@@ -35,8 +36,107 @@
         <a-entity laser-controls raycaster="objects: .screen;"></a-entity>
     </a-entity>
 
+    <a-entity id="navigation-bar-container" class="screen navigation-bar-container" htmlembed="2048" position="-0 3.5 -2" rotation="0 0 0">
+        <div class="ss-topbar">
+  <div class="ss-logo">
+    <span class="ss-logo-top">STOCK
+        <span class="ss-logo-mark">
+        <!-- <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M3 17l6-6 4 4 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg> -->
+            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.628 1.21829L14.9125 1.11546M14.9125 1.11546L15.0153 5.39994M14.9125 1.11546L8.98847 7.33082L5.33237 3.84612L0.802257 8.59905" stroke="white" stroke-width="1.07143" stroke-linecap="square"/>
+            </svg>
+        </span>
+    </span>
 
-    <a-entity id="left-container" class="screen left-container" htmlembed="1024" position="-0 2.3 -2" rotation="0 0 0">
+    <span class="ss-logo-bottom">STORM</span>
+  </div>
+
+  <nav class="ss-menu">
+    <a href="#" class="ss-link ss-active">Home</a>
+    <a href="#" class="ss-link">3D Chart</a>
+    <a href="#" class="ss-link">Plots</a>
+    <a href="#" class="ss-link">River</a>
+    <a href="#" class="ss-link">News</a>
+    <a href="#" class="ss-link">Compare</a>
+  </nav>
+  <div class="ss-actions">
+    <button class="ss-pill-long-btn" data-expand title="Search" aria-label="Search">
+        <span class="icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+            <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </span>
+        <input class="label" placeholder="Search">
+    </button>
+
+    <button class="ss-pill-btn" title="Watchlist" aria-label="Watchlist">
+        <span class="icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="5" y="3" width="14" height="18" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M8 7h8M8 11h8M8 15h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </span>
+        <span class="label">Watchlist</span>
+    </button>
+
+    <button class="ss-pill-btn" data-expand title="Log in" aria-label="Log in">
+        <span class="icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                <path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </span>
+        <span class="label">Log in</span>
+    </button>
+  </div>
+</div>
+
+    </a-entity>
+
+    <a-entity id="left-container" class="screen left-container" htmlembed="1024" position="-1.9 2.3 -2" rotation="0 0 0">
+         <div class="menu">
+            <div class="item active">Live Chart</div>
+            <div class="item">Perfomance</div>
+            <div class="item">Profile</div>
+            <div class="item">Financials</div>
+        </div>
+        <div class="header-row">
+            <div class="select-wrapper">
+                <input type="text" value="S&P 500" readonly>
+                <img src="./assets/arrow-down.svg" alt="">
+            </div>
+            <div class="settings-wrapper">
+                <img src="./assets/settings.svg" alt="">
+            </div>
+        </div>
+
+        <div class="chart-wrapper">
+            <p><b>S&P 500</b> INDEXSP: .INX</p>
+            <p><b>$ 6329,94</b> +91,93 (1,47%) Today</p>
+            <p>As of 12:25 PM PDT</p>
+            <svg id="chart" width="276" height="148"></svg>
+
+            <!--            <img src="./assets/chart.svg" alt="" class="chart">-->
+        </div>
+        <div class="time-range-wrapper">
+            <div class="item" data-range="1D">1D</div>
+            <div class="item" data-range="1W">1W</div>
+            <div class="item" data-range="1M">1M</div>
+            <div class="item" data-range="6M">6M</div>
+            <div class="item active" data-range="1Y">1Y</div>
+            <div class="item" data-range="5Y">5Y</div>
+            <div class="item" data-range="All">All</div>
+        </div>
+        <div class="main-buttons">
+            <button class="add-to-watchlist">Add to Watchlist</button>
+            <button class="compare">Compare</button>
+        </div>
+    </a-entity>
+    <a-entity id="center-container" class="screen center-container" htmlembed="1024" position="0 2.3 -2" rotation="0 0 0"></a-entity>
+    <a-entity id="right-container" class="screen right-container" htmlembed="1024" position="1.9 2.3 -2" rotation="0 0 0">
         <div class="menu">
             <div class="item active">Live Chart</div>
             <div class="item">Perfomance</div>
@@ -61,7 +161,7 @@
 
             <!--            <img src="./assets/chart.svg" alt="" class="chart">-->
         </div>
-        <div class="time-rage-wrapper">
+        <div class="time-range-wrapper">
             <div class="item" data-range="1D">1D</div>
             <div class="item" data-range="1W">1W</div>
             <div class="item" data-range="1M">1M</div>
@@ -79,7 +179,7 @@
     <a-entity id="form-container"
             class="screen form-container"
             htmlembed="2048"
-            position="1.5 2.3 -2"
+            position="3.5 2.3 -2"
             rotation="0 0 0">
     <div class="form-wrapper">
         <h3>Test Form Elements</h3>
@@ -116,11 +216,14 @@
         <button id="submitBtn" class="submit-button">Submit</button>
     </div>
     </a-entity>
-
-    <a-entity id="left-bottom-container" class="screen left-bottom-container" htmlembed="1024" material="shader: flat" position="-0 1.05 -2" rotation="0 0 0">
+    <a-entity id="left-bottom-container" class="screen left-bottom-container" htmlembed="1024" material="shader: flat" position="1.9 1.05 -2" rotation="0 0 0">
+        <img src="./assets/ae-logo.png" alt="">
+    </a-entity>
+    <a-entity id="left-bottom-container" class="screen left-bottom-container" htmlembed="1024" material="shader: flat" position="-1.9 1.05 -2" rotation="0 0 0">
         <img src="./assets/ae-logo.png" alt="">
     </a-entity>
 
+    
 </a-scene>
 
 <script>
@@ -262,7 +365,7 @@
     drawChart("1Y");
 
     // Обробник кнопок
-    document.querySelectorAll(".time-rage-wrapper .item").forEach(btn => {
+    document.querySelectorAll(".time-range-wrapper .item").forEach(btn => {
         btn.addEventListener("click", () => {
             document.querySelectorAll(".item").forEach(b => b.classList.remove("active"));
             btn.classList.add("active");
@@ -273,7 +376,7 @@
 
 <script>
 (function () {
-  const formEntity = document.getElementById('form-container');        // <a-entity ... htmlembed>
+  const formEntity = document.getElementById('form-container');
   const camera     = document.getElementById('camera');
   const username   = document.getElementById('username');
   const subscribe  = document.getElementById('subscribe');
@@ -367,7 +470,7 @@
 
   document.addEventListener('pointerdown', (e) => {
   if (!isUsernameRelated(e.target)) {
-    // якщо були в режимі введення — знімаємо фокус
+    
     if (typing) {
       typing = false;
       username.blur?.();
@@ -388,5 +491,115 @@ window.addEventListener('keydown', (e) => {
 })();
 </script>
 
+<script>
+    (function () {
+    // ---- 1) Допоміжні утиліти ----
+    function addPillInteractions(root, selector) {
+        const pills = Array.from(root.querySelectorAll(selector));
+
+        pills.forEach((btn) => {
+        const open  = () => btn.classList.add('is-open');
+        const close = () => btn.classList.remove('is-open');
+
+        // Миша / клавіатура
+        btn.addEventListener('mouseenter', open);
+        btn.addEventListener('mouseleave', close);
+        btn.addEventListener('focus', open);
+        btn.addEventListener('blur', close);
+
+        // Тач: тап → тумблер, тап поза → закрити
+        btn.addEventListener('touchstart', (e) => {
+            e.preventDefault();           // уникнути ghost‑click
+            btn.classList.toggle('is-open');
+        }, { passive: false });
+
+        document.addEventListener('touchstart', (e) => {
+            if (!btn.contains(e.target)) close();
+        });
+
+        // Якщо в пігулці є інпут (як у .ss-pill-long-btn) — відкривати по фокусу
+        const input = btn.querySelector('input,textarea');
+        if (input) {
+            input.addEventListener('focus', open);
+            input.addEventListener('blur',  close);
+            // На клік по зоні пігулки — фокус у поле
+            btn.addEventListener('click', () => input.focus());
+        }
+        });
+
+        return pills;
+    }
+
+    // ---- 2) Підключення до htmlembed для плавного ререндера під час transition ----
+    function wireHtmlembedPump(entity, pills) {
+    const comp = entity?.components?.htmlembed;
+    if (!comp || typeof comp.forceRender !== 'function') return;
+
+    let rafId = null, until = 0;
+
+    const pump = () => {
+        comp.forceRender();
+        if (performance.now() < until || rafId === null) {
+        rafId = requestAnimationFrame(pump);
+        } else {
+        stop();
+        }
+    };
+    const stop = () => { if (rafId) cancelAnimationFrame(rafId); rafId = null; };
+
+    const kickFor = (ms) => {
+        until = Math.max(until, performance.now() + ms);
+        if (!rafId) pump();
+    };
+
+    pills.forEach((btn) => {
+        btn.addEventListener('transitionrun',   () => kickFor(50));                 // короткий буст
+        btn.addEventListener('transitionstart', () => {
+        // читаємо фактичну тривалість transition з CSS і підкачуємо трохи довше
+        const cs = getComputedStyle(btn);
+        // беремо найбільшу тривалість серед усіх властивостей
+        const durs = cs.transitionDuration.split(',').map(s => parseFloat(s) * (s.includes('ms') ? 1 : 1000));
+        const maxDur = Math.max(...durs, 0);
+        kickFor(maxDur + 80);   // +80мс запас
+        });
+        btn.addEventListener('transitionend',   stop);
+        btn.addEventListener('transitioncancel',stop);
+    });
+
+    document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
+    entity.sceneEl?.addEventListener('pause', stop);
+    }
+
+    // ---- 3) Ініціалізація після завантаження сцени ----
+    const scene  = document.querySelector('a-scene');
+    const navEnt = document.getElementById('navigation-bar-container');
+
+    function init() {
+        // додати інтеракції до пігулок
+        const pills = [
+        ...addPillInteractions(document, '.ss-pill-btn'),
+        ...addPillInteractions(document, '.ss-pill-long-btn')
+        ];
+
+        // коли htmlembed готовий — підчепити pump
+        const tryWire = () => wireHtmlembedPump(navEnt, pills);
+
+        if (navEnt?.components?.htmlembed) {
+        tryWire();
+        } else {
+        navEnt?.addEventListener('componentinitialized', (e) => {
+            if (e.detail?.name === 'htmlembed') tryWire();
+        });
+        }
+    }
+
+    // Чекаємо повної готовності сцени A‑Frame
+    if (scene?.hasLoaded) {
+        init();
+    } else {
+        scene?.addEventListener('loaded', init, { once: true });
+    }
+    })();
+</script>
 </body>
 </html>
