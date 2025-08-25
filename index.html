@@ -137,7 +137,7 @@
             <button class="compare">Compare</button>
         </div>
     </a-entity>
-    <a-entity id="center-container" class="screen center-container" htmlembed="1024" position="0 2.3 -2" rotation="0 0 0"></a-entity>
+    <!-- <a-entity id="center-container" class="screen center-container" htmlembed="1024" position="0 2.3 -2" rotation="0 0 0"></a-entity> -->
     <a-entity id="right-container" class="screen right-container" htmlembed="1024" position="1.9 2.3 -2" rotation="0 0 0">
         <div class="menu">
             <div class="item active">Live Chart</div>
@@ -177,18 +177,37 @@
             <button class="compare">Compare</button>
         </div>
     </a-entity>
-    <!-- форма -->
-    <!-- <a-entity id="form-container"
-            class="screen form-container"
-            htmlembed="2048"
-            position="3.5 2.3 -2"
-            rotation="0 0 0">
+
+    <a-entity id="left-bottom-container" class="screen left-bottom-container" htmlembed="1024" material="shader: flat" position="1.9 1.05 -2" rotation="0 0 0">
+        <img src="./assets/ae-logo.png" alt="">
+    </a-entity>
+    <a-entity id="left-bottom-container" class="screen left-bottom-container" htmlembed="1024" material="shader: flat" position="-1.9 1.05 -2" rotation="0 0 0">
+        <img src="./assets/ae-logo.png" alt="">
+    </a-entity>
+    <a-entity id="mouseCursorHTML"
+            cursor="rayOrigin: mouse"
+            raycaster="objects: #form-panel; far: 50; showLine: true">
+    </a-entity>
+    <!-- <a-sphere id="cursor" color="black" radius="0.01" material="shader:flat" visible="false"></a-sphere> -->
+     <a-sphere id="cursor" color="white" radius="0.01" material="shader:flat" visible="true"></a-sphere>
+
+    <a-entity id="form-container"
+        class="screen form-container"
+        htmlembed="2048"
+        position="0 2.3 -2"
+        rotation="0 0 0">
+        <a-entity id="form-panel"
+            position="0 .5 0.003"     
+            rotation="0 0 0"
+            scale="3 3 3"
+            html="html:#vr-form; cursor:#cursor">
+        </a-entity>
         <div class="form-wrapper">
-            <h3>Test Form Elements</h3>
-            <div class="form-item">
+            <!-- <h3>Test Form Elements</h3> -->
+            <!-- <div class="form-item">
                 <label for="username">Username:</label>
                 <input type="text" id="username" placeholder="Enter your name">
-            </div>
+            </div> -->
             <div class="form-item">
                 <input type="checkbox" id="subscribe">
                 <label for="subscribe">
@@ -208,78 +227,44 @@
                 </label>
             </div>
             </div>
-position:fixed; left:-9999px; top:-9999px;
             <button id="submitBtn" class="submit-button">Submit</button>
         </div>
-    </a-entity> -->
-    <a-entity id="left-bottom-container" class="screen left-bottom-container" htmlembed="1024" material="shader: flat" position="1.9 1.05 -2" rotation="0 0 0">
-        <img src="./assets/ae-logo.png" alt="">
     </a-entity>
-    <a-entity id="left-bottom-container" class="screen left-bottom-container" htmlembed="1024" material="shader: flat" position="-1.9 1.05 -2" rotation="0 0 0">
-        <img src="./assets/ae-logo.png" alt="">
-    </a-entity>
-    <a-entity id="mouseCursorHTML"
-            cursor="rayOrigin: mouse"
-            raycaster="objects: #form-panel; far: 50; showLine: true">
-    </a-entity>
-    <!-- <a-sphere id="cursor" color="black" radius="0.01" material="shader:flat" visible="false"></a-sphere> -->
-     <a-sphere id="cursor" color="white" radius="0.01" material="shader:flat" visible="true"></a-sphere>
-
-
-    <a-entity id="form-panel"
-                position="3.5 2.3 -2"
-                rotation="0 0 0"
-                scale="3 3 3"
-                html="html:#vr-form; cursor:#cursor">
-    </a-entity>
-
+        <!-- <a-entity id="form-panel"
+                    position="0 2.8 -2.003"     
+                    rotation="0 0 0"
+                    scale="3 3 3"
+                    html="html:#vr-form; cursor:#cursor">
+        </a-entity> -->
 	</a-scene>
 
-   <div id="vr-form" style="pointer-events: none; user-select: none;">
+   <div id="vr-form">
         <div class="form-wrapper">
             <h3>Test Form Elements</h3>
 
-            <!-- Input field -->
             <div class="form-item">
-            <label for="username">Username:</label>
-            <input type="text" id="username" placeholder="Enter your name">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter your name">
             </div>
 
-            <!-- Checkbox -->
-            <div class="form-item">
-            <input type="checkbox" id="subscribe">
-            <label for="subscribe">Subscribe to newsletter</label>
-            </div>
-
-            <!-- Radio buttons -->
-            <div class="form-item">
-            <p>Choose a plan:</p>
-            <div class="form-item-radio">
-                <input type="radio" name="plan" value="basic" id="plan-basic" checked>
-                <label for="plan-basic">Basic</label>
-            </div>
-            <div class="form-item-radio">
-                <input type="radio" name="plan" value="pro" id="plan-pro">
-                <label for="plan-pro">Pro</label>
-            </div>
-            </div>
-
-            <button id="submitBtn" class="submit-button">Submit</button>
+            <!-- <button id="submitBtn" class="submit-button">Submit</button> -->
         </div>
     </div>
+
 
 <style>
   #vr-form{
     /* visibility: hidden;  */
     pointer-events: none;
     position: absolute; left: 0; top: 0; 
-    min-width: 500px;        
+    min-width: 340px;        
     font-size: 20px;          
     line-height: 1.3;
     opacity: 0;
   }
   #vr-form .form-wrapper{ padding:24px; border-radius:12px; }
-  #vr-form .form-item{ margin-bottom:16px; }
+  #vr-form .form-item{ margin-bottom:16px; position: relative; }
+  #vr-form .form-item input{ font-size: 18px; position: absolute;left: 32%; bottom: -3px; max-width: 60%;}
 </style>
 
     <script>
@@ -469,122 +454,7 @@ position:fixed; left:-9999px; top:-9999px;
             alert(`Name: ${name}, Subscribed: ${subscribed}, Plan: ${plan}`);
         });
     </script>
-    <!-- <script>
-        (function () {
-        const formEntity = document.getElementById('form-container');
-        const camera     = document.getElementById('camera');
-        const username   = document.getElementById('username');
-        const subscribe  = document.getElementById('subscribe');
-        const submitBtn  = document.getElementById('submitBtn');
-        const radios     = Array.from(document.querySelectorAll('input[name="plan"]'));
 
-        //  примусовий ререндер
-        const force = () => {
-            try { formEntity.components?.htmlembed?.forceRender?.(); } catch(_) {}
-        };
-
-        // Блокуємо рух сцени під час набору
-        const toggleControls = (enable) => {
-            camera?.setAttribute('wasd-controls', 'enabled: ' + (enable ? 'true' : 'false'));
-        };
-
-        // 1) INPUT: відображення введеного тексту
-        //    - синхронізуємо property -> attribute
-        //    - змушуємо htmlembed перемалюватися
-        let typing = false;
-
-        const applyValue = () => {
-            username.setAttribute('value', username.value); // критично для htmlembed
-            force();
-        };
-
-        username.addEventListener('focus', () => { typing = true;  toggleControls(false); });
-        username.addEventListener('blur',  () => { typing = false; toggleControls(true);  });
-
-        // Якщо нативний input подія доходить — цього достатньо
-        username.addEventListener('input', () => {
-            applyValue();
-            console.log('input event, current value:', username.value); 
-        });
-
-        // На деяких збірках keydown до інпуту не доходить.
-        // Перехоплюємо на window (capture), самі оновлюємо value + attribute.
-        window.addEventListener('keydown', (e) => {
-            if (!typing) return;
-            e.stopPropagation();
-            e.preventDefault();
-
-            if (e.key === 'Enter') { submitBtn?.click(); return; }
-            if (e.key === 'Backspace') {
-            username.value = username.value.slice(0, -1);
-            applyValue();
-            return;
-            }
-            if (e.key === ' ') {
-            username.value += ' ';
-            applyValue();
-            return;
-            }
-            if (e.key.length === 1) {          // друкований символ
-            username.value += e.key;
-            applyValue();
-            }
-        }, true);
-
-        // 2) CHECKBOX: синхронізуємо checked -> attribute + ререндер
-        const syncCheckboxAttr = () => {
-            if (subscribe.checked) subscribe.setAttribute('checked', ''); 
-            else subscribe.removeAttribute('checked');
-            force();
-        };
-        subscribe.addEventListener('change', syncCheckboxAttr);
-        syncCheckboxAttr(); // початковий стан
-
-        // 3) RADIO: атрибут checked лише на вибраному
-        const syncRadiosAttr = () => {
-            radios.forEach(r => r.removeAttribute('checked'));
-            const current = radios.find(r => r.checked);
-            if (current) current.setAttribute('checked', '');
-            force();
-        };
-        radios.forEach(r => r.addEventListener('change', syncRadiosAttr));
-        syncRadiosAttr();
-
-        // 4) Submit для демо
-        submitBtn?.addEventListener('click', () => {
-            const plan = document.querySelector('input[name="plan"]:checked')?.value;
-            alert(`Name: ${username.value}, Subscribed: ${subscribe.checked}, Plan: ${plan || '-'}`);
-        });
-
-        // 5) На деяких збірках клік не ставить фокус — форсимо
-        username.addEventListener('mousedown', () => setTimeout(() => username.focus(), 0), true);
-
-        const isUsernameRelated = (el) =>
-        el === username ||
-        (el instanceof Element && el.closest('label[for="username"]'));
-
-        document.addEventListener('pointerdown', (e) => {
-        if (!isUsernameRelated(e.target)) {
-            
-            if (typing) {
-            typing = false;
-            username.blur?.();
-            }
-            // повертаємо керування камерою
-            toggleControls(true);
-        }
-        }, true);
-
-        // (опційно) Escape також виходить з режиму введення
-        window.addEventListener('keydown', (e) => {
-        if (typing && e.key === 'Escape') {
-            typing = false;
-            username.blur?.();
-            toggleControls(true);
-        }
-        }, true);
-        })();
-    </script> -->
     <script>
         (function () {
         const scene  = document.querySelector('a-scene');
