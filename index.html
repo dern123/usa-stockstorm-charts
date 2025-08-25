@@ -9,6 +9,7 @@
     <script src="https://unpkg.com/aframe-htmlembed-component@^1.0.0/dist/aframe-htmlembed-component.min.js"></script>
 
     <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+    <script src="./lib/aframe-html.min.js"></script>
     <script src="./build.js"></script>
 
     <link rel="stylesheet" href="./styles.css">
@@ -17,6 +18,7 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
+
 <a-scene
     keyboard-shortcuts="enterVR: false; resetPose: false"
     fog="type: linear; color: #222222; far: 20;"
@@ -38,62 +40,62 @@
 
     <a-entity id="navigation-bar-container" class="screen navigation-bar-container" htmlembed="2048" position="-0 3.5 -2" rotation="0 0 0">
         <div class="ss-topbar">
-  <div class="ss-logo">
-    <span class="ss-logo-top">STOCK
-        <span class="ss-logo-mark">
-        <!-- <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M3 17l6-6 4 4 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg> -->
-            <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M10.628 1.21829L14.9125 1.11546M14.9125 1.11546L15.0153 5.39994M14.9125 1.11546L8.98847 7.33082L5.33237 3.84612L0.802257 8.59905" stroke="white" stroke-width="1.07143" stroke-linecap="square"/>
-            </svg>
-        </span>
-    </span>
+            <div class="ss-logo">
+                <span class="ss-logo-top">STOCK
+                    <span class="ss-logo-mark">
+                    <!-- <svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 17l6-6 4 4 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg> -->
+                        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10.628 1.21829L14.9125 1.11546M14.9125 1.11546L15.0153 5.39994M14.9125 1.11546L8.98847 7.33082L5.33237 3.84612L0.802257 8.59905" stroke="white" stroke-width="1.07143" stroke-linecap="square"/>
+                        </svg>
+                    </span>
+                </span>
 
-    <span class="ss-logo-bottom">STORM</span>
-  </div>
+                <span class="ss-logo-bottom">STORM</span>
+            </div>
 
-  <nav class="ss-menu">
-    <a href="#" class="ss-link ss-active">Home</a>
-    <a href="#" class="ss-link">3D Chart</a>
-    <a href="#" class="ss-link">Plots</a>
-    <a href="#" class="ss-link">River</a>
-    <a href="#" class="ss-link">News</a>
-    <a href="#" class="ss-link">Compare</a>
-  </nav>
-  <div class="ss-actions">
-    <button class="ss-pill-long-btn" data-expand title="Search" aria-label="Search">
-        <span class="icon">
-          <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-            <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
-            <path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </span>
-        <input class="label" placeholder="Search for stock ticker or company">
-    </button>
+            <nav class="ss-menu">
+                <a href="#" class="ss-link ss-active">Home</a>
+                <a href="#" class="ss-link">3D Chart</a>
+                <a href="#" class="ss-link">Plots</a>
+                <a href="#" class="ss-link">River</a>
+                <a href="#" class="ss-link">News</a>
+                <a href="#" class="ss-link">Compare</a>
+            </nav>
 
-    <button class="ss-pill-btn" title="Watchlist" aria-label="Watchlist">
-        <span class="icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-                <rect x="5" y="3" width="14" height="18" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/>
-                <path d="M8 7h8M8 11h8M8 15h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-        </span>
-        <span class="label">Watchlist</span>
-    </button>
+            <div class="ss-actions">
+                <button class="ss-pill-long-btn" data-expand title="Search" aria-label="Search">
+                    <span class="icon">
+                    <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/>
+                        <path d="M20 20l-3.5-3.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    </span>
+                    <input class="label" placeholder="Search for stock ticker or company">
+                </button>
 
-    <button class="ss-pill-btn" data-expand title="Log in" aria-label="Log in">
-        <span class="icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
-                <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
-                <path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-        </span>
-        <span class="label">Log in</span>
-    </button>
-  </div>
-</div>
+                <button class="ss-pill-btn" title="Watchlist" aria-label="Watchlist">
+                    <span class="icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                            <rect x="5" y="3" width="14" height="18" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M8 7h8M8 11h8M8 15h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                    <span class="label">Watchlist</span>
+                </button>
 
+                <button class="ss-pill-btn" data-expand title="Log in" aria-label="Log in">
+                    <span class="icon">
+                        <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="8" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                            <path d="M4 20c0-4 4-6 8-6s8 2 8 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </span>
+                    <span class="label">Log in</span>
+                </button>
+            </div>
+        </div>
     </a-entity>
 
     <a-entity id="left-container" class="screen left-container" htmlembed="1024" position="-1.9 2.3 -2" rotation="0 0 0">
@@ -176,430 +178,540 @@
         </div>
     </a-entity>
     <!-- форма -->
-    <a-entity id="form-container"
+    <!-- <a-entity id="form-container"
             class="screen form-container"
             htmlembed="2048"
             position="3.5 2.3 -2"
             rotation="0 0 0">
-    <div class="form-wrapper">
-        <h3>Test Form Elements</h3>
-
-        <!-- Input field -->
-        <div class="form-item">
-        <label for="username">Username:</label>
-        <input type="text" id="username" placeholder="Enter your name">
+        <div class="form-wrapper">
+            <h3>Test Form Elements</h3>
+            <div class="form-item">
+                <label for="username">Username:</label>
+                <input type="text" id="username" placeholder="Enter your name">
+            </div>
+            <div class="form-item">
+                <input type="checkbox" id="subscribe">
+                <label for="subscribe">
+                    Subscribe to newsletter
+                </label>
+            </div>
+            <div class="form-item">
+            <p>Choose a plan:</p>
+            <div class="form-item-radio">
+                <input type="radio" name="plan" value="basic" id="plan-basic">
+                <label for="plan-basic">  Basic
+                </label>
+            </div>
+            <div class="form-item-radio">
+                <input type="radio" name="plan" value="pro" id="plan-pro">
+                <label for="plan-pro"> Pro
+                </label>
+            </div>
+            </div>
+position:fixed; left:-9999px; top:-9999px;
+            <button id="submitBtn" class="submit-button">Submit</button>
         </div>
-
-        <!-- Checkbox -->
-        <div class="form-item">
-            <input type="checkbox" id="subscribe">
-            <label for="subscribe">
-                Subscribe to newsletter
-            </label>
-        </div>
-
-        <!-- Radio buttons -->
-        <div class="form-item">
-        <p>Choose a plan:</p>
-        <div class="form-item-radio">
-            <input type="radio" name="plan" value="basic" id="plan-basic">
-            <label for="plan-basic">  Basic
-            </label>
-        </div>
-        <div class="form-item-radio">
-            <input type="radio" name="plan" value="pro" id="plan-pro">
-            <label for="plan-pro"> Pro
-            </label>
-        </div>
-        </div>
-
-        <button id="submitBtn" class="submit-button">Submit</button>
-    </div>
-    </a-entity>
+    </a-entity> -->
     <a-entity id="left-bottom-container" class="screen left-bottom-container" htmlembed="1024" material="shader: flat" position="1.9 1.05 -2" rotation="0 0 0">
         <img src="./assets/ae-logo.png" alt="">
     </a-entity>
     <a-entity id="left-bottom-container" class="screen left-bottom-container" htmlembed="1024" material="shader: flat" position="-1.9 1.05 -2" rotation="0 0 0">
         <img src="./assets/ae-logo.png" alt="">
     </a-entity>
+    <a-entity id="mouseCursorHTML"
+            cursor="rayOrigin: mouse"
+            raycaster="objects: #form-panel; far: 50; showLine: true">
+    </a-entity>
+    <!-- <a-sphere id="cursor" color="black" radius="0.01" material="shader:flat" visible="false"></a-sphere> -->
+     <a-sphere id="cursor" color="white" radius="0.01" material="shader:flat" visible="true"></a-sphere>
 
-    
-</a-scene>
 
-<script>
-    const menuButtons = document.querySelectorAll('.left-container .menu .item');
-    menuButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            menuButtons.forEach(btn => btn.classList.remove('active'));
-            button.classList.add('active');
-        });
-    });
-</script>
+    <a-entity id="form-panel"
+                position="3.5 2.3 -2"
+                rotation="0 0 0"
+                scale="3 3 3"
+                html="html:#vr-form; cursor:#cursor">
+    </a-entity>
 
-<script>
-    const svg = d3.select("#chart");
-    const width = +svg.attr("width");
-    const height = +svg.attr("height");
-    const margin = { top: 10, right: 10, bottom: 20, left: 30 };
+	</a-scene>
 
-    let xScale, yScale, lineGenerator;
-    let path, circles, xAxisG, yAxisG;
+   <div id="vr-form" style="pointer-events: none; user-select: none;">
+        <div class="form-wrapper">
+            <h3>Test Form Elements</h3>
 
-    // Дані для різних діапазонів
-    const datasets = {
-        "1D": {
-            labels: ["09:00","12:00","15:00","18:00","21:00"],
-            data: [5, 8, 7, 9, 6]
-        },
-        "1W": {
-            labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
-            data: [12, 15, 10, 18, 20, 16, 14]
-        },
-        "1M": {
-            labels: ["W1","W2","W3","W4"],
-            data: [10, 12, 18, 15]
-        },
-        "6M": {
-            labels: ["Jan","Feb","Mar","Apr","May","Jun"],
-            data: [12, 15, 22, 28, 30, 26]
-        },
-        "1Y": {
-            labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
-            data: [5, 12, 18, 25, 30, 28, 35, 32, 26, 20, 15, 10]
-        },
-        "5Y": {
-            labels: ["2019","2020","2021","2022","2023"],
-            data: [100, 150, 200, 180, 220]
-        },
-        "All": {
-            labels: ["2010","2012","2014","2016","2018","2020","2022","2024"],
-            data: [50, 70, 100, 130, 160, 200, 220, 250]
-        }
-    };
+            <!-- Input field -->
+            <div class="form-item">
+            <label for="username">Username:</label>
+            <input type="text" id="username" placeholder="Enter your name">
+            </div>
 
-    // Функція побудови графіка
-    function drawChart(rangeKey) {
-        const dataset = datasets[rangeKey];
-        const data = dataset.labels.map((label, i) => ({ label, value: dataset.data[i] }));
+            <!-- Checkbox -->
+            <div class="form-item">
+            <input type="checkbox" id="subscribe">
+            <label for="subscribe">Subscribe to newsletter</label>
+            </div>
 
-        // Масштаби
-        xScale = d3.scalePoint()
-            .domain(dataset.labels)
-            .range([margin.left, width - margin.right]);
+            <!-- Radio buttons -->
+            <div class="form-item">
+            <p>Choose a plan:</p>
+            <div class="form-item-radio">
+                <input type="radio" name="plan" value="basic" id="plan-basic" checked>
+                <label for="plan-basic">Basic</label>
+            </div>
+            <div class="form-item-radio">
+                <input type="radio" name="plan" value="pro" id="plan-pro">
+                <label for="plan-pro">Pro</label>
+            </div>
+            </div>
 
-        const maxY = d3.max(dataset.data);
-        yScale = d3.scaleLinear()
-            .domain([0, Math.ceil(maxY / 10) * 10]) // округлення вгору
-            .range([height - margin.bottom, margin.top]);
+            <button id="submitBtn" class="submit-button">Submit</button>
+        </div>
+    </div>
 
-        lineGenerator = d3.line()
-            .x(d => xScale(d.label))
-            .y(d => yScale(d.value))
-            .curve(d3.curveMonotoneX);
-
-        // Осі
-        if (!xAxisG) {
-            xAxisG = svg.append("g").attr("transform", `translate(0,${height - margin.bottom})`);
-        }
-        xAxisG.call(d3.axisBottom(xScale))
-            .call(g => g.selectAll("path, line").attr("stroke", "#FFFFFFCC"))
-            .call(g => g.selectAll("text").attr("fill", "#FFFFFFCC"));
-
-        if (!yAxisG) {
-            yAxisG = svg.append("g").attr("transform", `translate(${margin.left},0)`);
-        }
-        yAxisG.call(d3.axisLeft(yScale).ticks(5))
-            .call(g => g.selectAll("path, line").attr("stroke", "#FFFFFFCC"))
-            .call(g => g.selectAll("text").attr("fill", "#FFFFFFCC"));
-
-        // Лінія
-        if (!path) {
-            path = svg.append("path")
-                .attr("fill", "none")
-                .attr("stroke", "#8979FF")
-                .attr("stroke-width", 2);
-        }
-
-        // Точки
-        if (!circles) {
-            circles = svg.selectAll("circle")
-                .data(data)
-                .enter()
-                .append("circle")
-                .attr("r", 3)
-                .attr("fill", "#8979FF");
-        } else {
-            circles.remove();
-            circles = svg.selectAll("circle")
-                .data(data)
-                .enter()
-                .append("circle")
-                .attr("r", 3)
-                .attr("fill", "#8979FF");
-        }
-
-        // --- Анімація ---
-        let progress = 0;
-        const speed = 0.005;
-
-        function animate() {
-            progress += speed;
-            if (progress > 1) progress = 1;
-
-            const indexProgress = progress * (data.length - 1);
-            const animatedData = data.map((d, i) => i <= indexProgress ? d : null).filter(d=>d);
-
-            path.datum(animatedData).attr("d", lineGenerator);
-
-            circles
-                .attr("cx", d => xScale(d.label))
-                .attr("cy", (d,i) => i <= indexProgress ? yScale(d.value) : 0)
-                .attr("opacity", (d,i) => i <= indexProgress ? 1 : 0);
-
-            if (progress < 1) requestAnimationFrame(animate);
-        }
-        animate();
-    }
-
-    // Початковий графік
-    drawChart("1Y");
-
-    // Обробник кнопок
-    document.querySelectorAll(".time-range-wrapper .item").forEach(btn => {
-        btn.addEventListener("click", () => {
-            document.querySelectorAll(".item").forEach(b => b.classList.remove("active"));
-            btn.classList.add("active");
-            drawChart(btn.dataset.range);
-        });
-    });
-</script>
-
-<script>
-(function () {
-  const formEntity = document.getElementById('form-container');
-  const camera     = document.getElementById('camera');
-  const username   = document.getElementById('username');
-  const subscribe  = document.getElementById('subscribe');
-  const submitBtn  = document.getElementById('submitBtn');
-  const radios     = Array.from(document.querySelectorAll('input[name="plan"]'));
-
-  //  примусовий ререндер
-  const force = () => {
-    try { formEntity.components?.htmlembed?.forceRender?.(); } catch(_) {}
-  };
-
-  // Блокуємо рух сцени під час набору
-  const toggleControls = (enable) => {
-    camera?.setAttribute('wasd-controls', 'enabled: ' + (enable ? 'true' : 'false'));
-  };
-
-  // 1) INPUT: відображення введеного тексту
-  //    - синхронізуємо property -> attribute
-  //    - змушуємо htmlembed перемалюватися
-  let typing = false;
-
-  const applyValue = () => {
-    username.setAttribute('value', username.value); // критично для htmlembed
-    force();
-  };
-
-  username.addEventListener('focus', () => { typing = true;  toggleControls(false); });
-  username.addEventListener('blur',  () => { typing = false; toggleControls(true);  });
-
-  // Якщо нативний input подія доходить — цього достатньо
-  username.addEventListener('input', () => {
-    applyValue();
-    console.log('input event, current value:', username.value); 
-  });
-
-  // На деяких збірках keydown до інпуту не доходить.
-  // Перехоплюємо на window (capture), самі оновлюємо value + attribute.
-  window.addEventListener('keydown', (e) => {
-    if (!typing) return;
-    e.stopPropagation();
-    e.preventDefault();
-
-    if (e.key === 'Enter') { submitBtn?.click(); return; }
-    if (e.key === 'Backspace') {
-      username.value = username.value.slice(0, -1);
-      applyValue();
-      return;
-    }
-    if (e.key === ' ') {
-      username.value += ' ';
-      applyValue();
-      return;
-    }
-    if (e.key.length === 1) {          // друкований символ
-      username.value += e.key;
-      applyValue();
-    }
-  }, true);
-
-  // 2) CHECKBOX: синхронізуємо checked -> attribute + ререндер
-  const syncCheckboxAttr = () => {
-    if (subscribe.checked) subscribe.setAttribute('checked', ''); 
-    else subscribe.removeAttribute('checked');
-    force();
-  };
-  subscribe.addEventListener('change', syncCheckboxAttr);
-  syncCheckboxAttr(); // початковий стан
-
-  // 3) RADIO: атрибут checked лише на вибраному
-  const syncRadiosAttr = () => {
-    radios.forEach(r => r.removeAttribute('checked'));
-    const current = radios.find(r => r.checked);
-    if (current) current.setAttribute('checked', '');
-    force();
-  };
-  radios.forEach(r => r.addEventListener('change', syncRadiosAttr));
-  syncRadiosAttr();
-
-  // 4) Submit для демо
-  submitBtn?.addEventListener('click', () => {
-    const plan = document.querySelector('input[name="plan"]:checked')?.value;
-    alert(`Name: ${username.value}, Subscribed: ${subscribe.checked}, Plan: ${plan || '-'}`);
-  });
-
-  // 5) На деяких збірках клік не ставить фокус — форсимо
-  username.addEventListener('mousedown', () => setTimeout(() => username.focus(), 0), true);
-
-  const isUsernameRelated = (el) =>
-  el === username ||
-  (el instanceof Element && el.closest('label[for="username"]'));
-
-  document.addEventListener('pointerdown', (e) => {
-  if (!isUsernameRelated(e.target)) {
-    
-    if (typing) {
-      typing = false;
-      username.blur?.();
-    }
-    // повертаємо керування камерою
-    toggleControls(true);
+<style>
+  #vr-form{
+    /* visibility: hidden;  */
+    pointer-events: none;
+    position: absolute; left: 0; top: 0; 
+    min-width: 500px;        
+    font-size: 20px;          
+    line-height: 1.3;
+    opacity: 0;
   }
-}, true);
+  #vr-form .form-wrapper{ padding:24px; border-radius:12px; }
+  #vr-form .form-item{ margin-bottom:16px; }
+</style>
 
-// (опційно) Escape також виходить з режиму введення
-window.addEventListener('keydown', (e) => {
-  if (typing && e.key === 'Escape') {
-    typing = false;
-    username.blur?.();
-    toggleControls(true);
-  }
-}, true);
-})();
-</script>
-
-<script>
-    (function () {
-    // ---- 1) Допоміжні утиліти ----
-    function addPillInteractions(root, selector) {
-        const pills = Array.from(root.querySelectorAll(selector));
-
-        pills.forEach((btn) => {
-        const open  = () => btn.classList.add('is-open');
-        const close = () => btn.classList.remove('is-open');
-
-        // Миша / клавіатура
-        btn.addEventListener('mouseenter', open);
-        btn.addEventListener('mouseleave', close);
-        btn.addEventListener('focus', open);
-        btn.addEventListener('blur', close);
-
-        // Тач: тап → тумблер, тап поза → закрити
-        btn.addEventListener('touchstart', (e) => {
-            e.preventDefault();           // уникнути ghost‑click
-            btn.classList.toggle('is-open');
-        }, { passive: false });
-
-        document.addEventListener('touchstart', (e) => {
-            if (!btn.contains(e.target)) close();
+    <script>
+        const menuButtons = document.querySelectorAll('.left-container .menu .item');
+        menuButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                menuButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+            });
         });
+    </script>
 
-        // Якщо в пігулці є інпут (як у .ss-pill-long-btn) — відкривати по фокусу
-        const input = btn.querySelector('input,textarea');
-        if (input) {
-            input.addEventListener('focus', open);
-            input.addEventListener('blur',  close);
-            // На клік по зоні пігулки — фокус у поле
-            btn.addEventListener('click', () => input.focus());
+    <script>
+        const svg = d3.select("#chart");
+        const width = +svg.attr("width");
+        const height = +svg.attr("height");
+        const margin = { top: 10, right: 10, bottom: 20, left: 30 };
+
+        let xScale, yScale, lineGenerator;
+        let path, circles, xAxisG, yAxisG;
+
+        // Дані для різних діапазонів
+        const datasets = {
+            "1D": {
+                labels: ["09:00","12:00","15:00","18:00","21:00"],
+                data: [5, 8, 7, 9, 6]
+            },
+            "1W": {
+                labels: ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"],
+                data: [12, 15, 10, 18, 20, 16, 14]
+            },
+            "1M": {
+                labels: ["W1","W2","W3","W4"],
+                data: [10, 12, 18, 15]
+            },
+            "6M": {
+                labels: ["Jan","Feb","Mar","Apr","May","Jun"],
+                data: [12, 15, 22, 28, 30, 26]
+            },
+            "1Y": {
+                labels: ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+                data: [5, 12, 18, 25, 30, 28, 35, 32, 26, 20, 15, 10]
+            },
+            "5Y": {
+                labels: ["2019","2020","2021","2022","2023"],
+                data: [100, 150, 200, 180, 220]
+            },
+            "All": {
+                labels: ["2010","2012","2014","2016","2018","2020","2022","2024"],
+                data: [50, 70, 100, 130, 160, 200, 220, 250]
+            }
+        };
+
+        // Функція побудови графіка
+        function drawChart(rangeKey) {
+            const dataset = datasets[rangeKey];
+            const data = dataset.labels.map((label, i) => ({ label, value: dataset.data[i] }));
+
+            // Масштаби
+            xScale = d3.scalePoint()
+                .domain(dataset.labels)
+                .range([margin.left, width - margin.right]);
+
+            const maxY = d3.max(dataset.data);
+            yScale = d3.scaleLinear()
+                .domain([0, Math.ceil(maxY / 10) * 10]) // округлення вгору
+                .range([height - margin.bottom, margin.top]);
+
+            lineGenerator = d3.line()
+                .x(d => xScale(d.label))
+                .y(d => yScale(d.value))
+                .curve(d3.curveMonotoneX);
+
+            // Осі
+            if (!xAxisG) {
+                xAxisG = svg.append("g").attr("transform", `translate(0,${height - margin.bottom})`);
+            }
+            xAxisG.call(d3.axisBottom(xScale))
+                .call(g => g.selectAll("path, line").attr("stroke", "#FFFFFFCC"))
+                .call(g => g.selectAll("text").attr("fill", "#FFFFFFCC"));
+
+            if (!yAxisG) {
+                yAxisG = svg.append("g").attr("transform", `translate(${margin.left},0)`);
+            }
+            yAxisG.call(d3.axisLeft(yScale).ticks(5))
+                .call(g => g.selectAll("path, line").attr("stroke", "#FFFFFFCC"))
+                .call(g => g.selectAll("text").attr("fill", "#FFFFFFCC"));
+
+            // Лінія
+            if (!path) {
+                path = svg.append("path")
+                    .attr("fill", "none")
+                    .attr("stroke", "#8979FF")
+                    .attr("stroke-width", 2);
+            }
+
+            // Точки
+            if (!circles) {
+                circles = svg.selectAll("circle")
+                    .data(data)
+                    .enter()
+                    .append("circle")
+                    .attr("r", 3)
+                    .attr("fill", "#8979FF");
+            } else {
+                circles.remove();
+                circles = svg.selectAll("circle")
+                    .data(data)
+                    .enter()
+                    .append("circle")
+                    .attr("r", 3)
+                    .attr("fill", "#8979FF");
+            }
+
+            // --- Анімація ---
+            let progress = 0;
+            const speed = 0.005;
+
+            function animate() {
+                progress += speed;
+                if (progress > 1) progress = 1;
+
+                const indexProgress = progress * (data.length - 1);
+                const animatedData = data.map((d, i) => i <= indexProgress ? d : null).filter(d=>d);
+
+                path.datum(animatedData).attr("d", lineGenerator);
+
+                circles
+                    .attr("cx", d => xScale(d.label))
+                    .attr("cy", (d,i) => i <= indexProgress ? yScale(d.value) : 0)
+                    .attr("opacity", (d,i) => i <= indexProgress ? 1 : 0);
+
+                if (progress < 1) requestAnimationFrame(animate);
+            }
+            animate();
         }
+
+        // Початковий графік
+        drawChart("1Y");
+
+        // Обробник кнопок
+        document.querySelectorAll(".time-range-wrapper .item").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.querySelectorAll(".item").forEach(b => b.classList.remove("active"));
+                btn.classList.add("active");
+                drawChart(btn.dataset.range);
+            });
+        });
+    </script>
+    <script>
+        (function(){
+            const camera = document.getElementById('camera');
+            const panel  = document.getElementById('form-panel');
+
+            let pressed = false;
+
+            function setMove(enabled){
+            camera?.setAttribute('wasd-controls', 'enabled: ' + (enabled ? 'true' : 'false'));
+            }
+
+            panel.addEventListener('mouseenter', () => setMove(false));
+            panel.addEventListener('mouseleave', () => { if (!pressed) setMove(true); });
+
+            panel.addEventListener('mousedown', () => {
+            pressed = true;
+            setMove(false);
+            });
+            window.addEventListener('mouseup', () => {
+            pressed = false;
+            // якщо курсор не на формі — повертаємо рух
+            const over = panel.matches(':hover');
+            if (!over) setMove(true);
+            });
+
+            // Опціонально: ESC — вийти з режиму введення та повернути рух
+            window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') setMove(true);
+            });
+        })();
+    </script>
+
+    <script>
+        document.getElementById('submitBtn')?.addEventListener('click', () => {
+            const name = document.getElementById('username')?.value || '';
+            const subscribed = document.getElementById('subscribe')?.checked || false;
+            const plan = document.querySelector('input[name="plan"]:checked')?.value || '-';
+            alert(`Name: ${name}, Subscribed: ${subscribed}, Plan: ${plan}`);
+        });
+    </script>
+    <!-- <script>
+        (function () {
+        const formEntity = document.getElementById('form-container');
+        const camera     = document.getElementById('camera');
+        const username   = document.getElementById('username');
+        const subscribe  = document.getElementById('subscribe');
+        const submitBtn  = document.getElementById('submitBtn');
+        const radios     = Array.from(document.querySelectorAll('input[name="plan"]'));
+
+        //  примусовий ререндер
+        const force = () => {
+            try { formEntity.components?.htmlembed?.forceRender?.(); } catch(_) {}
+        };
+
+        // Блокуємо рух сцени під час набору
+        const toggleControls = (enable) => {
+            camera?.setAttribute('wasd-controls', 'enabled: ' + (enable ? 'true' : 'false'));
+        };
+
+        // 1) INPUT: відображення введеного тексту
+        //    - синхронізуємо property -> attribute
+        //    - змушуємо htmlembed перемалюватися
+        let typing = false;
+
+        const applyValue = () => {
+            username.setAttribute('value', username.value); // критично для htmlembed
+            force();
+        };
+
+        username.addEventListener('focus', () => { typing = true;  toggleControls(false); });
+        username.addEventListener('blur',  () => { typing = false; toggleControls(true);  });
+
+        // Якщо нативний input подія доходить — цього достатньо
+        username.addEventListener('input', () => {
+            applyValue();
+            console.log('input event, current value:', username.value); 
         });
 
-        return pills;
-    }
+        // На деяких збірках keydown до інпуту не доходить.
+        // Перехоплюємо на window (capture), самі оновлюємо value + attribute.
+        window.addEventListener('keydown', (e) => {
+            if (!typing) return;
+            e.stopPropagation();
+            e.preventDefault();
 
-    // ---- 2) Підключення до htmlembed для плавного ререндера під час transition ----
-    function wireHtmlembedPump(entity, pills) {
-    const comp = entity?.components?.htmlembed;
-    if (!comp || typeof comp.forceRender !== 'function') return;
+            if (e.key === 'Enter') { submitBtn?.click(); return; }
+            if (e.key === 'Backspace') {
+            username.value = username.value.slice(0, -1);
+            applyValue();
+            return;
+            }
+            if (e.key === ' ') {
+            username.value += ' ';
+            applyValue();
+            return;
+            }
+            if (e.key.length === 1) {          // друкований символ
+            username.value += e.key;
+            applyValue();
+            }
+        }, true);
 
-    let rafId = null, until = 0;
+        // 2) CHECKBOX: синхронізуємо checked -> attribute + ререндер
+        const syncCheckboxAttr = () => {
+            if (subscribe.checked) subscribe.setAttribute('checked', ''); 
+            else subscribe.removeAttribute('checked');
+            force();
+        };
+        subscribe.addEventListener('change', syncCheckboxAttr);
+        syncCheckboxAttr(); // початковий стан
 
-    const pump = () => {
-        comp.forceRender();
-        if (performance.now() < until || rafId === null) {
-        rafId = requestAnimationFrame(pump);
-        } else {
-        stop();
+        // 3) RADIO: атрибут checked лише на вибраному
+        const syncRadiosAttr = () => {
+            radios.forEach(r => r.removeAttribute('checked'));
+            const current = radios.find(r => r.checked);
+            if (current) current.setAttribute('checked', '');
+            force();
+        };
+        radios.forEach(r => r.addEventListener('change', syncRadiosAttr));
+        syncRadiosAttr();
+
+        // 4) Submit для демо
+        submitBtn?.addEventListener('click', () => {
+            const plan = document.querySelector('input[name="plan"]:checked')?.value;
+            alert(`Name: ${username.value}, Subscribed: ${subscribe.checked}, Plan: ${plan || '-'}`);
+        });
+
+        // 5) На деяких збірках клік не ставить фокус — форсимо
+        username.addEventListener('mousedown', () => setTimeout(() => username.focus(), 0), true);
+
+        const isUsernameRelated = (el) =>
+        el === username ||
+        (el instanceof Element && el.closest('label[for="username"]'));
+
+        document.addEventListener('pointerdown', (e) => {
+        if (!isUsernameRelated(e.target)) {
+            
+            if (typing) {
+            typing = false;
+            username.blur?.();
+            }
+            // повертаємо керування камерою
+            toggleControls(true);
         }
-    };
-    const stop = () => { if (rafId) cancelAnimationFrame(rafId); rafId = null; };
+        }, true);
 
-    const kickFor = (ms) => {
-        until = Math.max(until, performance.now() + ms);
-        if (!rafId) pump();
-    };
-
-    pills.forEach((btn) => {
-        btn.addEventListener('transitionrun',   () => kickFor(50));                 // короткий буст
-        btn.addEventListener('transitionstart', () => {
-        // читаємо фактичну тривалість transition з CSS і підкачуємо трохи довше
-        const cs = getComputedStyle(btn);
-        // беремо найбільшу тривалість серед усіх властивостей
-        const durs = cs.transitionDuration.split(',').map(s => parseFloat(s) * (s.includes('ms') ? 1 : 1000));
-        const maxDur = Math.max(...durs, 0);
-        kickFor(maxDur + 80);   // +80мс запас
-        });
-        btn.addEventListener('transitionend',   stop);
-        btn.addEventListener('transitioncancel',stop);
-    });
-
-    document.addEventListener('visibilitychange', () => { if (document.hidden) stop(); });
-    entity.sceneEl?.addEventListener('pause', stop);
-    }
-
-    // ---- 3) Ініціалізація після завантаження сцени ----
-    const scene  = document.querySelector('a-scene');
-    const navEnt = document.getElementById('navigation-bar-container');
-
-    function init() {
-        // додати інтеракції до пігулок
-        const pills = [
-        ...addPillInteractions(document, '.ss-pill-btn'),
-        ...addPillInteractions(document, '.ss-pill-long-btn')
-        ];
-
-        // коли htmlembed готовий — підчепити pump
-        const tryWire = () => wireHtmlembedPump(navEnt, pills);
-
-        if (navEnt?.components?.htmlembed) {
-        tryWire();
-        } else {
-        navEnt?.addEventListener('componentinitialized', (e) => {
-            if (e.detail?.name === 'htmlembed') tryWire();
-        });
+        // (опційно) Escape також виходить з режиму введення
+        window.addEventListener('keydown', (e) => {
+        if (typing && e.key === 'Escape') {
+            typing = false;
+            username.blur?.();
+            toggleControls(true);
         }
-    }
+        }, true);
+        })();
+    </script> -->
+    <script>
+        (function () {
+        const scene  = document.querySelector('a-scene');
+        const navEnt = document.getElementById('navigation-bar-container');
 
-    // Чекаємо повної готовності сцени A‑Frame
-    if (scene?.hasLoaded) {
-        init();
-    } else {
-        scene?.addEventListener('loaded', init, { once: true });
-    }
-    })();
-</script>
+        function whenReady(fn){
+            const go = () => {
+            // чекаємо, поки компонент підніметься
+            if (navEnt?.components?.htmlembed?.forceRender) fn();
+            else navEnt?.addEventListener('componentinitialized', (e) => {
+                if (e.detail?.name === 'htmlembed') fn();
+            }, { once:true });
+            };
+            if (scene?.hasLoaded) go();
+            else scene?.addEventListener('loaded', go, { once:true });
+        }
+
+        whenReady(() => {
+            const comp = navEnt.components.htmlembed;
+            const pills = Array.from(document.querySelectorAll('#navigation-bar-container .ss-pill-btn, #navigation-bar-container .ss-pill-long-btn'));
+
+            // easeInOutQuad
+            const ease = t => t<0.5 ? 2*t*t : -1+(4-2*t)*t;
+
+            function readPx(btn, varName, fallback){
+                const v = getComputedStyle(btn).getPropertyValue(varName).trim();
+                const n = parseFloat(v);
+                return Number.isFinite(n) ? n : fallback;
+            }
+
+            function animateWidth(btn, open, dur = 280) {
+                if (btn.__cancelAnim) btn.__cancelAnim();
+
+                btn.style.transition = 'background .15s, border-color .15s, box-shadow .2s, color .15s';
+
+                const collapsed = readPx(btn, '--collapsed', 40);
+                const expanded  = readPx(btn, '--expanded', 260);
+
+                const current = parseFloat(btn.style.width) || btn.getBoundingClientRect().width;
+                const from = current;
+                const to   = open ? expanded : collapsed;
+
+                const label = btn.querySelector('.label');
+                const t0 = performance.now();
+                let rafId = null;
+
+                // ---- Налаштування продуктивності ----
+                const pxSnap = 1.0;      // мін. зміна ширини для оновлення (1px; можна 1.5–2)
+                const fpsCap = 30;       // цільовий FPS
+                const minDt  = 1000 / fpsCap;
+                let lastRenderT = 0;
+                let lastRenderW = current;
+
+                const step = now => {
+                    const p = Math.min(1, (now - t0) / dur);
+                    const k = ease(p);
+
+                    const nextW = from + (to - from) * k;
+                    const dt = now - lastRenderT;
+
+                    // ОНОВЛЮЄМО ТІЛЬКИ якщо:
+                    // 1) пройшов інтервал fpsCap, і
+                    // 2) зміна ширини помітна (>= pxSnap)
+                    if (dt >= minDt && Math.abs(nextW - lastRenderW) >= pxSnap) {
+                    btn.style.width = Math.round(nextW) + 'px';
+
+                    if (label) {
+                        const progress = (nextW - collapsed) / (expanded - collapsed);
+                        label.style.opacity   = Math.max(0, Math.min(1, progress));
+                        label.style.transform = `translateX(${(1 - progress) * -6}px)`;
+                    }
+
+                    comp.forceRender();   // 💡 менше викликів = менше навантаження
+                    lastRenderT = now;
+                    lastRenderW = nextW;
+                    }
+
+                    if (p < 1) rafId = requestAnimationFrame(step);
+                    else {
+                    // фінальний снап до точної цілі + один фінальний рендер
+                    btn.style.width = to + 'px';
+                    if (label) {
+                        const progress = (to - collapsed) / (expanded - collapsed);
+                        label.style.opacity   = Math.max(0, Math.min(1, progress));
+                        label.style.transform = `translateX(${(1 - progress) * -6}px)`;
+                    }
+                    comp.forceRender();
+                    btn.classList.toggle('is-open', open);
+                    btn.__cancelAnim = null;
+                    }
+                };
+
+                btn.__cancelAnim = () => { cancelAnimationFrame(rafId); btn.__cancelAnim = null; };
+                rafId = requestAnimationFrame(step);
+            }
+
+            // підключення подій
+            pills.forEach(btn => {
+            btn.addEventListener('mouseenter', () => animateWidth(btn, true));
+            btn.addEventListener('mouseleave', () => animateWidth(btn, false));
+            btn.addEventListener('focus',      () => animateWidth(btn, true));
+            btn.addEventListener('blur',       () => animateWidth(btn, false));
+
+            // тач
+            btn.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                animateWidth(btn, !btn.classList.contains('is-open'));
+            }, { passive:false });
+
+            // якщо є input — при кліку фокус і відкриття
+            const input = btn.querySelector('input,textarea');
+            if (input){
+                btn.addEventListener('click', () => {
+                input.focus();
+                animateWidth(btn, true);
+                });
+                input.addEventListener('blur', () => animateWidth(btn, false));
+            }
+            });
+
+            // зупинка анімацій, якщо вкладка прихована
+            document.addEventListener('visibilitychange', () => {
+            if (document.hidden) pills.forEach(b => b.__cancelAnim?.());
+            });
+        });
+        })();
+    </script>
+
 </body>
 </html>
